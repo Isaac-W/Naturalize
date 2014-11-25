@@ -71,6 +71,13 @@ bool GameScene::init()
 	Director::getInstance()->getEventDispatcher()->addEventListenerWithSceneGraphPriority(touchscreenListener, this);
 #endif
 
+	// Create test unit and add as child
+	this->myUnit = TestUnit::create();
+	this->map->addChild(myUnit);
+	
+	MoveBy *unitmove = MoveBy::create(10, Vec2(2000, 1000));
+	this->myUnit->runAction(unitmove);
+
 	// Initialize game state
 	cur_state = GAMESTATE_SELECT;
 

@@ -5,6 +5,42 @@
 
 #include "Cursor.h"
 
+//////////////////////////////////////////////////////////////////////////
+// TestUnit class to test Node subclassing
+
+class TestUnit : public cocos2d::Node
+{
+private:
+	cocos2d::Sprite *mysprite;
+
+public:
+
+	// When creating a class, you should include CREATE_FUNC to create the create() method.
+	// The static create() method automatically creates an instance and calls the init() method.
+	
+	CREATE_FUNC(TestUnit);
+
+	virtual bool init()
+	{
+		// Super init
+		if (!cocos2d::Node::init())
+		{
+			return false;
+		}
+
+		// vvvv DO THE INIT HERE vvvv
+
+		this->mysprite = cocos2d::Sprite::create("maps/test/lumberjack.png");
+		this->addChild(this->mysprite);
+
+		// ^^^^ DO THE INIT HERE ^^^^
+
+		return true;
+	}
+};
+
+//////////////////////////////////////////////////////////////////////////
+
 enum GameSceneState
 {
 	GAMESTATE_SELECT = 0,	// Inital unit selectio
@@ -21,6 +57,9 @@ private:
 
 	// Movement/selection cursor
 	Cursor cursor;
+
+	// Test unit
+	TestUnit *myUnit;
 
 public:
 	
